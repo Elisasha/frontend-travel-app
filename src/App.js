@@ -5,6 +5,7 @@ import { PlaceName } from "./Pages/PlaceName";
 import { FriendPage } from "./Pages/FriendPage";
 import { withNavBar } from "./components/NavBar";
 import { MainPage } from "./Pages/MainPage";
+import { Triplist } from "./Pages/TripList";
 
 
 
@@ -17,7 +18,8 @@ function App() {
           <Route path="/places" component={withNavBar(PlaceName)} />
           <Route path="/friend/:friendID" component={withNavBar(FriendPage)} />
           {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
-          <Route path="/:user" component={MainPage} />
+          {/* <Route path="/:user" exact component={MainPage} /> */}
+          <Route path="/trips" component={Triplist} />
         </Switch>
       </div>
     </Router>
