@@ -15,8 +15,8 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact component={LoginPage} />
-          <Route path="/places" component={withNavBar(PlaceName)} />
-          <Route path="/friend/:friendID" component={withNavBar(FriendPage)} />
+          {/* <Route path="/places" component={withNavBar(PlaceName)} /> */}
+          {/* <Route path="/friend/:friendID" component={withNavBar(FriendPage)} /> */}
           {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
           {/* <Route path="/:user" exact component={MainPage} /> */}
           <Route path="/trips" component={Triplist} />
