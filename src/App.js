@@ -1,9 +1,11 @@
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import './App.css';
-import { MainPage } from "./Pages/MainPage";
+import { LoginPage } from "./Pages/LoginPage";
 import { PlaceName } from "./Pages/PlaceName";
 import { FriendPage } from "./Pages/FriendPage";
 import { withNavBar } from "./components/NavBar";
+import { TestPage } from "./Pages/TestPage";
+
 
 
 function App() {
@@ -11,9 +13,11 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/" exact component={MainPage} />
+          <Route path="/" exact component={LoginPage} />
           <Route path="/places" component={withNavBar(PlaceName)} />
           <Route path="/friend/:friendID" component={withNavBar(FriendPage)} />
+          {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
+          <Route path="/test" component={TestPage} />
         </Switch>
       </div>
     </Router>
