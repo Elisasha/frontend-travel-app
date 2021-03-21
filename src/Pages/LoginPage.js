@@ -4,12 +4,12 @@ export function LoginPage() {
   return (
     <div class="w-full flex flex-wrap">
       {/* <!-- Image Section --> */}
-      <div class="w-1/2 shadow-2xl">
-        <img class="object-cover w-full h-screen hidden md:block" src="https://images.unsplash.com/photo-1539639087565-41c59f40f3d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"></img>
+      <div class="lg:w-1/2 shadow-2xl hidden lg:block md:mx-auto">
+        <img class="object-cover w-full h-screen " src="https://images.unsplash.com/photo-1539639087565-41c59f40f3d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"></img>
       </div>
 
       {/* <!-- Login Section --> */}
-      <div class="w-full md:w-1/2 flex flex-col">
+      <div class="w-full lg:w-1/2 flex flex-col">
 
         {/* <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
           <a href="#" class="bg-black text-white font-bold text-xl p-4">Logo</a>
