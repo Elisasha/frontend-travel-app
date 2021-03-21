@@ -4,7 +4,7 @@ import { LoginPage } from "./Pages/LoginPage";
 import { PlaceName } from "./Pages/PlaceName";
 import { FriendPage } from "./Pages/FriendPage";
 import { withNavBar } from "./components/NavBar";
-import { TestPage } from "./Pages/TestPage";
+import { MainPage } from "./Pages/MainPage";
 
 
 
@@ -17,7 +17,7 @@ function App() {
           <Route path="/places" component={withNavBar(PlaceName)} />
           <Route path="/friend/:friendID" component={withNavBar(FriendPage)} />
           {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
-          <Route path="/test" component={TestPage} />
+          <Route path="/:user" component={MainPage} />
         </Switch>
       </div>
     </Router>
