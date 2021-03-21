@@ -12,12 +12,9 @@ export function Triplist() {
                     <div className="content-area bg-white rounded overflow-hidden shadow-lg">
                         {/* TODO remove style */}
                         {/* <div style={{ height: 3000, background: 'salmon' }}></div> */}
-                        <div className="card max-w-screen-2xl hover:shadow-none relative flex flex-col mx-auto m-5">
-                            <div className="flex items-center flex-wrap">
-                                {Array.from({ length: 9 }).map(index => <TripCard key={index}></TripCard>)}
-                            </div>
+                        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 px-4">
+                            {Array.from({ length: 10 }).map(index => <TripCard key={index}></TripCard>)}
                         </div>
-
                     </div>
                 </main>
             </div>

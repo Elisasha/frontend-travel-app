@@ -1,15 +1,27 @@
 import React from "react";
-import { Rating } from "../components/Rating";
+import "./TripCard.css";
 
 export function TripCard() {
     return (
-        <div className="blogs bg-white mr-5 w-80 m-4 bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg">
-            <img src="https://images.unsplash.com/photo-1489396160836-2c99c977e970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" className=""></img>
-            <div className="p-5 pb-0">
-                <h1 className="placeName text-2xl font-bold text-green-800 py-2">Iceland</h1>
-                <p className="dates bg-white text-base text-black">01.05.2021-14.05.2021</p>
-                <Rating></Rating>
-                <a href="" className="py-2 px-3 mt-4 px-8 text-white bg-blue-400 inline-block rounded">Read More</a>
+        <div class="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-div overflow-hidden relative">
+            <div className="w-full">
+                <div class="image-cover rounded-t-md" >
+                    <div class="p-2 m-4 w-16 h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25">
+                        <span class="text-base tracking-wide  font-bold border-b border-white font-sans"> 12</span>
+                        <span class="text-xs tracking-wide font-bold uppercase block font-sans">April</span>
+                    </div>
+                </div>
+                <div class="py-2 px-2 bg-white  rounded-b-md fd-cl group-hover:opacity-25">
+                    <span class="block text-2xl text-gray-800 font-bold tracking-wide">France</span>
+                    {/* <span class="block text-gray-600 text-sm">Vivamus.</span> */}
+                </div>
+            </div>
+
+            <div class="absolute opacity-0 fd-sh group-hover:opacity-100">
+                {/* <span class="text-3xl font-bold text-white tracking-wider leading-relaxed font-sans">Paris city of light</span> */}
+                <div class="text-center">
+                    <button class="text-center rounded-lg p-4 bg-white  text-gray-700 font-bold text-lg">View</button>
+                </div>
             </div>
         </div>
     );
