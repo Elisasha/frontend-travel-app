@@ -11,7 +11,7 @@ export function UserCard() {
                         alt="Randy Robertson"
                     />
                     <p className="pt-2 text-lg font-semibold">Randy Robertson</p>
-                    <p className="text-sm text-gray-600">randy.robertson@example.com</p>
+                    <p className="text-sm text-gray-600 truncate">randy.robertson@example.com</p>
                 </div>
                 <div className="border-b">
 
