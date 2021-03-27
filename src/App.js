@@ -6,6 +6,7 @@ import { FriendPage } from "./Pages/FriendPage";
 import { withNavBar } from "./components/NavBar";
 import { MainPage } from "./Pages/MainPage";
 import { Triplist } from "./Pages/TripList";
+import { AddTrip } from "./Pages/AddTrip";
 
 
 
@@ -20,6 +21,8 @@ function App() {
           {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
           {/* <Route path="/:user" exact component={MainPage} /> */}
           <Route path="/trips" component={Triplist} />
+          <Route path="/addtrip" component={AddTrip} />
+
         </Switch>
       </div>
     </Router>
