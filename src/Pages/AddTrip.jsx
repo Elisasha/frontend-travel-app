@@ -1,7 +1,7 @@
 import React from "react";
 import { Calendar } from "../components/Calendar";
 import { UserCard } from "../components/UserCard";
-import "react-dates/lib/css/_datepicker.css";
+// import "react-dates/lib/css/_datepicker.css";
 
 
 export function AddTrip() {
@@ -14,7 +14,7 @@ export function AddTrip() {
                         <form class="flex flex-col pt-3" onsubmit="event.preventDefault();">
                             <div class="flex flex-col pt-4">
                                 <label for="tripName" class="text-lg">Trip name</label>
-                                <input id="tripName" placeholder="Iceland" class="lg:w-1/2 appearance-none border w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"></input>
+                                <input id="tripName" placeholder="Iceland" class="lg:w-1/3 appearance-none border w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"></input>
                             </div>
 
                             {/* <div class="flex flex-col pt-4"> */}
@@ -22,7 +22,7 @@ export function AddTrip() {
                                 <Calendar />
                             {/* </div> */}
                             <label for="city" class="text-lg  pt-4">Cities</label>
-                            <div class="flex flex-wrap items-stretch w-full mb-4 relative lg:w-1/2">
+                            <div class="flex flex-wrap items-stretch w-full mb-4 relative lg:w-1/3">
                                 <input type="city" placeholder="Reykjavik" class="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none w-px border h-10 px-3 relative" ></input>
                                 <div class="flex -mr-px">
                                     <button class="appearance-none flex items-center leading-normal bg-grey-lighter rounded-l-none border border-l-0 px-3 whitespace-no-wrap text-grey-dark text-sm">+</button>
