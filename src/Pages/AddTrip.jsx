@@ -1,8 +1,6 @@
 import React from "react";
 import { Calendar } from "../components/Calendar";
 import { UserCard } from "../components/UserCard";
-// import "react-dates/lib/css/_datepicker.css";
-
 
 export function AddTrip() {
     return (
@@ -16,11 +14,7 @@ export function AddTrip() {
                                 <label for="tripName" class="text-lg">Trip name</label>
                                 <input id="tripName" placeholder="Iceland" class="lg:w-1/3 appearance-none border w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"></input>
                             </div>
-
-                            {/* <div class="flex flex-col pt-4"> */}
-                                {/* <label for="tripName" class="text-lg">Trip name</label> */}
-                                <Calendar />
-                            {/* </div> */}
+                            <Calendar />
                             <label for="city" class="text-lg  pt-4">Cities</label>
                             <div class="flex flex-wrap items-stretch w-full mb-4 relative lg:w-1/3">
                                 <input type="city" placeholder="Reykjavik" class="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none w-px border h-10 px-3 relative" ></input>
