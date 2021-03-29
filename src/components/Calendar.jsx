@@ -1,24 +1,26 @@
 import React, { useState } from "react";
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
+import "react-dates/initialize";
+import { DateRangePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
 
-import { DateRangePicker } from 'react-dates';
-
-export function Calendar(props) {
+export function Calendar() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [focusedInput, setFocusedInput] = useState(null);
-
+    const handleDatesChange = ({ startDate, endDate }) => {
+        setStartDate(startDate);
+        setEndDate(endDate);
+    };
     return (
-        <div className="calendar">
+        <div className="App pt-4 xl:w-1/3">
             <DateRangePicker
-                startDateId="startDate"
-                endDateId="endDate"
                 startDate={startDate}
+                startDateId="tata-start-date"
                 endDate={endDate}
-                onDatesChange={({ startDate, endDate }) => { setStartDate({ startDate }); setEndDate({ endDate }) }}
+                endDateId="tata-end-date"
+                onDatesChange={handleDatesChange}
                 focusedInput={focusedInput}
-                onFocusChange={(focusedInput) => { setFocusedInput(focusedInput) }}
+                onFocusChange={focusedInput => setFocusedInput(focusedInput)}
             />
         </div>
     );
