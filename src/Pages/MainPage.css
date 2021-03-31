@@ -1,0 +1,55 @@
+body {
+  background-color: rgb(233, 224, 210);
+}
+
+.section {
+  padding: 12px;
+}
+
+.main {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+
+.content-area {
+  /* border: 3px solid black;  */
+  width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .section {
+    padding: 88px 0;
+  }
+
+  .main {
+    flex-direction: row;
+  }
+
+  .content-area {
+    height: calc(100vh - 196px);
+    max-height: calc(100vh - 196px);
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  .content-area::-webkit-scrollbar {
+    width: 5px;
+  }
+     
+  .content-area::-webkit-scrollbar-track {
+    background: #ddd;
+  }
+     
+  .content-area::-webkit-scrollbar-thumb {
+    background: black; 
+  }
+}
+
+
+
+@media screen and (min-width: 1024px) {
+  .section {
+    height: 100vh;
+  }
+}
