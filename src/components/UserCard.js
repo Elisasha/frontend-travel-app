@@ -1,4 +1,5 @@
 import React from "react";
+import app from '../base.js';
 
 export function UserCard() {
     return (
@@ -118,7 +119,8 @@ export function UserCard() {
 
                         </div>
                         <div className="pl-3">
-                            <p className="text-sm font-medium text-gray-800 leading-none">Logout</p>
+                            {/* <p className="text-sm font-medium text-gray-800 leading-none">Logout</p> */}
+                            <button onClick={() => app.auth().signOut()}>Sign out</button>
                             {/* <p className="text-xs text-gray-500">Google, slack, mail</p> */}
                         </div>
                     </div>
