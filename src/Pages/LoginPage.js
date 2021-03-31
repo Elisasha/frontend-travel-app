@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import { AuthContext } from "../Auth.js";
+import { signInWithGoogle } from '../base.js';
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -47,6 +48,13 @@ const Login = ({ history }) => {
 
             <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8"></input>
           </form>
+          <button className="login-provider-button mt-8 border border-gray-900 " onClick={signInWithGoogle}>
+            <div className="flex login-button py-1 items-center justify-center">
+              <img className="h-8 w-8 mx-1" src="https://img.icons8.com/ios-filled/50/000000/google-logo.png" alt="google icon" />
+              <span> Continue with Google</span>
+            </div>
+          </button>
+
           <div class="text-center pt-12 pb-12">
             <p>Don't have an account? <a href="/signup" class="underline font-semibold">Register here.</a></p>
           </div>
