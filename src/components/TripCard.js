@@ -13,6 +13,7 @@ export function TripCard() {
                 </div>
                 <div class="py-2 px-2 bg-white  rounded-b-md fd-cl group-hover:opacity-25">
                     <span class="block text-2xl text-gray-800 font-bold tracking-wide">France</span>
+                    <span class="block text-gray-600 text-sm">Vivamus ac ligula sit amet erat luctus laoreet ac quis ligula. Donec bibendum faucibus purus eget cursus. Proin enim ante, scelerisque vel sem sit amet, ultrices mollis risus. Praesent justo felis, ullamcorper a cursus sed, condimentum at dui.</span>
                     {/* <span class="block text-gray-600 text-sm">Vivamus.</span> */}
                 </div>
             </div>
