@@ -44,7 +44,7 @@ export function AddTrip() {
                                             <input type="city" value={city.value || ""} onChange={e => handleChange(idx, e)} placeholder="Reykjavik" class="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none border h-10 px-3 relative" ></input>
                                             <div class="flex -mr-px">
                                                 {idx > 0
-                                                    ? <button type="button" onClick={() => handleRemove()} class="w-8 appearance-none flex items-center leading-normal bg-grey-lighter rounded-l-none border border-l-0 px-3 whitespace-no-wrap text-grey-dark text-sm">-</button>
+                                                    ? <button type="button" onClick={() => handleRemove(idx)} class="w-8 appearance-none flex items-center leading-normal bg-grey-lighter rounded-l-none border border-l-0 px-3 whitespace-no-wrap text-grey-dark text-sm">-</button>
                                                     : <button type="button" onClick={() => handleAdd()} class="w-8 w-0appearance-none flex items-center leading-normal bg-grey-lighter rounded-l-none border border-l-0 px-3 whitespace-no-wrap text-grey-dark text-sm">+</button>
                                                 }
                                             </div>
