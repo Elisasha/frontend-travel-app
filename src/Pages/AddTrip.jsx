@@ -4,24 +4,24 @@ import { UserCard } from "../components/UserCard";
 import '../components/Calendar.css';
 
 export function AddTrip() {
-    const [fields, setFields] = useState([{ value: null }]);
+    const [cities, setCities] = useState([{ value: null }]);
 
     function handleChange(i, event) {
-        const values = [...fields];
+        const values = [...cities];
         values[i].value = event.target.value;
-        setFields(values);
+        setCities(values);
     }
 
     function handleAdd() {
-        const values = [...fields];
+        const values = [...cities];
         values.push({ value: null });
-        setFields(values);
+        setCities(values);
     }
 
     function handleRemove(i) {
-        const values = [...fields];
+        const values = [...cities];
         values.splice(i, 1);
-        setFields(values);
+        setCities(values);
     }
 
     return (
@@ -37,11 +37,11 @@ export function AddTrip() {
                             </div>
                             <Calendar />
                             <label for="city" class="text-lg  pt-4">Cities</label>
-                            {fields.map((field, idx) => {
+                            {cities.map((city, idx) => {
                                 return (
-                                    <div key={`${field}-${idx}`}>
+                                    <div key={`${city}-${idx}`}>
                                         <div class="flex flex-wrap items-stretch w-full mb-4 relative xl:w-2/5">
-                                            <input type="city" value={field.value || ""} onChange={e => handleChange(idx, e)} placeholder="Reykjavik" class="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none border h-10 px-3 relative" ></input>
+                                            <input type="city" value={city.value || ""} onChange={e => handleChange(idx, e)} placeholder="Reykjavik" class="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none border h-10 px-3 relative" ></input>
                                             <div class="flex -mr-px">
                                                 {idx > 0
                                                     ? <button type="button" onClick={() => handleRemove()} class="w-8 appearance-none flex items-center leading-normal bg-grey-lighter rounded-l-none border border-l-0 px-3 whitespace-no-wrap text-grey-dark text-sm">-</button>
