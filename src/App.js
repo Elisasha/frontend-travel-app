@@ -6,6 +6,7 @@ import { FriendPage } from "./Pages/FriendPage";
 import { withNavBar } from "./components/NavBar";
 import { MainPage } from "./Pages/MainPage";
 import { Triplist } from "./Pages/TripList";
+import { FriendsList } from "./Pages/FriendsList"
 import { AddTrip } from "./Pages/AddTrip";
 import SignUp from "./components/SignUp";
 import { AuthProvider } from "./Auth";
@@ -27,6 +28,7 @@ function App() {
             <Route path="/addtrip" component={AddTrip} />
             <Route path="/signup" exact component={SignUp} />
             <PrivateRoute exact path="/" component={Triplist} />
+            <Route path="/friends" component={FriendsList} />
             {/* <Route path="/login" component={LoginPage} /> */}
           </Switch>
         </div>
