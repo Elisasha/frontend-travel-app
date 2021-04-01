@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import Login from "./Pages/LoginPage";
 import { PlaceName } from "./Pages/PlaceName";
@@ -24,9 +24,11 @@ function App() {
             {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
             {/* <Route path="/:user" exact component={MainPage} /> */}
             {/* <Route path="/trips" component={Triplist} /> */}
-            <Route path="/addtrip" component={AddTrip} />
+            <PrivateRoute path="/addtrip" component={AddTrip} />
             <Route path="/signup" exact component={SignUp} />
             <PrivateRoute exact path="/" component={Triplist} />
+            <Route path="/logout" exact render = {() => <Redirect to="/login"></Redirect>} />
+            {/* add friendslist */}
             {/* <Route path="/login" component={LoginPage} /> */}
           </Switch>
         </div>
