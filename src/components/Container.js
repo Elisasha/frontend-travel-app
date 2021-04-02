@@ -1,14 +1,19 @@
 import React from "react";
-import { TripCard } from "../components/TripCard";
 import "../index.css";
+import {UserCard} from "./UserCard"
 
-export function Container({children}) {
+export function Container({ children }) {
     return (
-        <div classNameName="h-screen font-sans">
-            <div classNameName="container mx-auto flex m-2">
-                {children}
+        <section className="section">
+            <div className="md:container md:mx-auto">
+                <main className="main">
+                    <UserCard />
+                    <div className="content-area bg-white rounded overflow-hidden shadow-lg">
+                        {children}
+                    </div>
+                </main>
             </div>
-        </div>
+        </section>
     );
 }
 
