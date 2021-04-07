@@ -27,7 +27,7 @@ export function SearchPanel() {
                     </div>
 
                     <div className="select flex">
-                        <span className="text-sm m-2 hidden md:block">Sort by:</span>
+                        <span className="text-sm m-2 hidden lg:block">Sort by:</span>
                         <div className="border-gray-300 border rounded-full p-1">
                             <select name="" id="" className="text-sm outline-none focus:outline-none bg-transparent items-center">
                                 <option value="name" selected>name asc</option>
