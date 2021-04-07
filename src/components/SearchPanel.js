@@ -2,9 +2,10 @@ import React from "react";
 
 export function SearchPanel() {
     return (
-        < div className="box" >
-            <div className="box-wrapper">
-                <div className=" bg-white flex items-center justify-between w-full p-1 shadow-sm border-gray-200">
+        // < div className="box" >
+            // <div className="box-wrapper">
+            // width 1202px
+                <div className=" bg-white flex items-center justify-between w-full p-1 shadow-sm border-gray-200 fixed z-10 px-3">
                     {/* <div className="bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex"> */}
                     <div className="text-sm text-gray-500 leading-none inline-flex">
                         <button className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-1 py-2 active" id="grid">
@@ -45,8 +46,8 @@ export function SearchPanel() {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div >
+            // </div>
+        // </div >
 
     );
 }
