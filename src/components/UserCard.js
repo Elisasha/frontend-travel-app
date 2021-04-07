@@ -1,7 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import app from '../base.js';
+import { logoutUser } from "../store/actions";
+
+
 
 export function UserCard() {
+    const dispatch = useDispatch();
     return (
         <div>
             <div className="bg-white rounded overflow-hidden shadow-lg">
@@ -120,7 +125,7 @@ export function UserCard() {
                         </div>
                         <div className="pl-3">
                             {/* <p className="text-sm font-medium text-gray-800 leading-none">Logout</p> */}
-                            <button onClick={() => app.auth().signOut()}>Sign out</button>
+                            <button onClick={() => app.auth().signOut().then(() => dispatch(logoutUser()))}>Sign out</button>
                             {/* <p className="text-xs text-gray-500">Google, slack, mail</p> */}
                         </div>
                     </div>

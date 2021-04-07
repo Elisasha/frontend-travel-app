@@ -1,21 +1,33 @@
-import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Provider, useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import './App.css';
-import Login from "./Pages/LoginPage";
-import { PlaceName } from "./Pages/PlaceName";
-import { FriendPage } from "./Pages/FriendPage";
-import { withNavBar } from "./components/NavBar";
-import { MainPage } from "./Pages/MainPage";
-import { Triplist } from "./Pages/TripList";
-import { FriendsList } from "./Pages/FriendsList"
-import { AddTrip } from "./Pages/AddTrip";
+import app from "./base.js";
 import SignUp from "./components/SignUp";
-import { AuthProvider } from "./Auth";
-import PrivateRoute from './Pages/PrivateRoute'
+import { AddTrip } from "./Pages/AddTrip";
+import { FriendsList } from "./Pages/FriendsList";
+import Login from "./Pages/LoginPage";
+import PrivateRoute from './Pages/PrivateRoute';
+import { Triplist } from "./Pages/TripList";
+import { setCurrentUser } from './store/actions';
+import { store } from './store/index';
 
 
 function App() {
+  const [pending, setPending] = useState(true);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    app.auth().onAuthStateChanged((user) => {
+      dispatch(setCurrentUser(user));
+      setPending(false)
+    });
+  }, []);
+
+  if (pending) {
+    return <>Loading...</>
+  }
+
   return (
-    <AuthProvider>
       <Router>
         <div className="App">
           <Switch>
@@ -28,14 +40,13 @@ function App() {
             <PrivateRoute path="/addtrip" component={AddTrip} />
             <Route path="/signup" exact component={SignUp} />
             <PrivateRoute exact path="/" component={Triplist} />
-            <Route path="/logout" exact render = {() => <Redirect to="/login"></Redirect>} />
+            <Route path="/logout" exact render={() => <Redirect to="/login"></Redirect>} />
             {/* add friendslist */}
             <Route path="/friends" component={FriendsList} />
             {/* <Route path="/login" component={LoginPage} /> */}
           </Switch>
         </div>
       </Router>
-    </AuthProvider>
   );
 }
 
