@@ -3,6 +3,7 @@ import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import { AuthContext } from "../Auth.js";
 import { signInWithGoogle } from '../base.js';
+import { useSelector } from "react-redux";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -21,9 +22,9 @@ const Login = ({ history }) => {
     [history]
   );
 
-  const { currentUser } = useContext(AuthContext);
+  const { user } = useSelector((state) => state);
 
-  if (currentUser) {
+  if (user) {
     return <Redirect to="/" />;
   }
 
