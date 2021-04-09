@@ -9,6 +9,7 @@ import { FriendsList } from "./Pages/FriendsList";
 import Login from "./Pages/LoginPage";
 import PrivateRoute from './Pages/PrivateRoute';
 import { Triplist } from "./Pages/TripList";
+import { TripPage } from './Pages/TripPage';
 import { setCurrentUser } from './store/actions';
 import { store } from './store/index';
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="/logout" exact render={() => <Redirect to="/login"></Redirect>} />
             {/* add friendslist */}
             <Route path="/friends" component={FriendsList} />
+            <Route path="/trips/:tripID" component={TripPage} />
             {/* <Route path="/login" component={LoginPage} /> */}
           </Switch>
         </div>
