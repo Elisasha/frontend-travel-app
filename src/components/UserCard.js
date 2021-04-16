@@ -69,6 +69,9 @@ export function UserCard() {
                     </div>
                 </a>
             </div>
+                <button class="bg-red-200 hover:bg-blue-dark text-gray-600 font-bold py-2 px-4 rounded mt-4 w-full">
+                    Return
+                </button>
         </div>
     );
 }
