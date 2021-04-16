@@ -1,7 +1,6 @@
 import React from 'react';
 import { TripCard } from "../components/TripCard";
 import { Container } from '../components/Container';
-import { SearchPanel } from '../components/SearchPanel';
 
 
 export function Triplist() {
