@@ -15,6 +15,7 @@ const Login = ({ history }) => {
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
+        console.log("redirect")
       } catch (error) {
         alert(error);
       }

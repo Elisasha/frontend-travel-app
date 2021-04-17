@@ -13,4 +13,11 @@ return {
 }
 }
 
+export function extendCurrentUser(extendedUser: any) {
+    return {
+        type: "extendCurrentUser",
+        payload: extendedUser
+    };
+}
+
 

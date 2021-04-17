@@ -1,9 +1,14 @@
 import React from 'react';
 import { FriendCard } from "../components/FriendCard";
 import { Container } from '../components/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserFriends } from '../store/users/actions';
 
 
 export function FriendsList() {
+    const user = useSelector((state) => state.curUser);
+    const dispatch = useDispatch();
+    dispatch(getUserFriends(user));
     return (
         <Container>
             {/* <div className="grid gap-1 grid-cols-1 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 mt-6 px-4"> */}

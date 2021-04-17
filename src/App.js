@@ -9,17 +9,24 @@ import { FriendsList } from "./Pages/FriendsList";
 import Login from "./Pages/LoginPage";
 import PrivateRoute from './Pages/PrivateRoute';
 import { Triplist } from "./Pages/TripList";
-import { setCurrentUser } from './store/actions';
+import { extendCurrentUser, setCurrentUser } from './store/curUser/actions';
 import { store } from './store/index';
+import { database } from "./base";
+
 
 
 function App() {
   const [pending, setPending] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
-    app.auth().onAuthStateChanged((user) => {
+    app.auth().onAuthStateChanged(async (user) => {
       dispatch(setCurrentUser(user));
+      const snap = await database.ref('users/' + user.uid).get()
+      const extUser = snap.val();
+      dispatch(extendCurrentUser(extUser)); console.log(extUser);
+      // dispatch(extendCurrentUser(extUser));
       setPending(false)
+
     });
   }, []);
 
@@ -28,25 +35,25 @@ function App() {
   }
 
   return (
-      <Router>
-        <div className="App">
-          <Switch>
-            <Route path="/login" exact component={Login} />
-            {/* <Route path="/places" component={withNavBar(PlaceName)} /> */}
-            {/* <Route path="/friend/:friendID" component={withNavBar(FriendPage)} /> */}
-            {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
-            {/* <Route path="/:user" exact component={MainPage} /> */}
-            {/* <Route path="/trips" component={Triplist} /> */}
-            <PrivateRoute path="/addtrip" component={AddTrip} />
-            <Route path="/signup" exact component={SignUp} />
-            <PrivateRoute exact path="/" component={Triplist} />
-            <Route path="/logout" exact render={() => <Redirect to="/login"></Redirect>} />
-            {/* add friendslist */}
-            <Route path="/friends" component={FriendsList} />
-            {/* <Route path="/login" component={LoginPage} /> */}
-          </Switch>
-        </div>
-      </Router>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login" exact component={Login} />
+          {/* <Route path="/places" component={withNavBar(PlaceName)} /> */}
+          {/* <Route path="/friend/:friendID" component={withNavBar(FriendPage)} /> */}
+          {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}
+          {/* <Route path="/:user" exact component={MainPage} /> */}
+          {/* <Route path="/trips" component={Triplist} /> */}
+          <PrivateRoute path="/addtrip" component={AddTrip} />
+          <Route path="/signup" exact component={SignUp} />
+          <PrivateRoute exact path="/" component={Triplist} />
+          <Route path="/logout" exact render={() => <Redirect to="/login"></Redirect>} />
+          {/* add friendslist */}
+          <Route path="/friends" component={FriendsList} />
+          {/* <Route path="/login" component={LoginPage} /> */}
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
