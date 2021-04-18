@@ -23,7 +23,7 @@ function App() {
       dispatch(setCurrentUser(user));
       const snap = await database.ref('users/' + user.uid).get()
       const extUser = snap.val();
-      dispatch(extendCurrentUser(extUser)); console.log(extUser);
+      dispatch(extendCurrentUser(extUser)); console.log("this is ext user", extUser);
       // dispatch(extendCurrentUser(extUser));
       setPending(false)
 

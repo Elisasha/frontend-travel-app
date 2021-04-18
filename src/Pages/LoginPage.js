@@ -23,12 +23,6 @@ const Login = ({ history }) => {
     [history]
   );
 
-  const { user } = useSelector((state) => state);
-
-  if (user) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <div className="w-full flex flex-wrap">
       <div className="lg:w-1/2 shadow-2xl hidden lg:block md:mx-auto">
