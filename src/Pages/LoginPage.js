@@ -11,11 +11,12 @@ const Login = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await app
+        const creds = await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
-        console.log("redirect")
+        history.push("/" + creds.user.uid + "/mytrips");
+        // console.log("redirect")
+        // console.log("creds:", creds)
       } catch (error) {
         alert(error);
       }

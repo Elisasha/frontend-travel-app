@@ -12,21 +12,27 @@ import { Triplist } from "./Pages/TripList";
 import { extendCurrentUser, setCurrentUser } from './store/curUser/actions';
 import { store } from './store/index';
 import { database } from "./base";
-
+import { useHistory } from 'react-router-dom'
 
 
 function App() {
+  // const history = useHistory();
   const [pending, setPending] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     app.auth().onAuthStateChanged(async (user) => {
-      dispatch(setCurrentUser(user));
-      const snap = await database.ref('users/' + user.uid).get()
-      const extUser = snap.val();
-      dispatch(extendCurrentUser(extUser)); console.log("this is ext user", extUser);
-      // dispatch(extendCurrentUser(extUser));
+      console.log(user)
+      if (user && Object.keys(user).length) {
+        dispatch(setCurrentUser(user));
+        const snap = await database.ref('users/' + user.uid).get()
+        const extUser = snap.val();
+        dispatch(extendCurrentUser(extUser)); console.log("this is ext user", extUser);
+        // dispatch(extendCurrentUser(extUser));
+        // history.push();
+        // window.location.href = "/" + user.uid + "/mytrips/"
+        console.log("something")
+      }
       setPending(false)
-
     });
   }, []);
 
@@ -46,7 +52,8 @@ function App() {
           {/* <Route path="/trips" component={Triplist} /> */}
           <PrivateRoute path="/addtrip" component={AddTrip} />
           <Route path="/signup" exact component={SignUp} />
-          <PrivateRoute exact path="/" component={Triplist} />
+          <PrivateRoute path="/:uid/mytrips" component={Triplist} />
+          <PrivateRoute path="/" component={Triplist} />
           <Route path="/logout" exact render={() => <Redirect to="/login"></Redirect>} />
           {/* add friendslist */}
           <Route path="/friends" component={FriendsList} />
