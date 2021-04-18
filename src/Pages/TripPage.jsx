@@ -1,8 +1,10 @@
 import React from 'react';
 import { Container } from '../components/Container';
 import '../components/Calendar.css';
+import { useSelector } from 'react-redux';
 
 export function TripPage() {
+    const trip = useSelector();
     return (
         <Container>
             <div className="w-full flex flex-wrap h-full">

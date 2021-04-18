@@ -17,6 +17,8 @@ export function AddTrip() {
     const history = useHistory();
     // const [tripID, setTripID] = useState();
 
+
+
     function handleChange(i, event) {
         const values = [...cities];
         values[i].value = event.target.value;
@@ -42,12 +44,14 @@ export function AddTrip() {
             startDate: startDate.toString(),
             endDate: endDate.toString(),
             cities,
-            rating: null
+            // rating: null
         });
-        database.ref('users/' + uid).collection("trips").add(tripID)
+        database.ref("users/" + uid + "/trips").push(tripID)
         //add redirect to trip page
         console.log('send to db: trip id[' + tripID + ']')
-        history.push("/trips" + tripID)
+        history.push("/trips/" + tripID)
+        database.ref("users/" + uid + "/trips").get().then((snap) => console.log(snap.val()))
+
     }
 
     return (
