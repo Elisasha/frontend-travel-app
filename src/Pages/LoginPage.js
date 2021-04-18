@@ -11,22 +11,18 @@ const Login = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await app
+        const creds = await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/" + creds.user.uid + "/mytrips");
+        // console.log("redirect")
+        // console.log("creds:", creds)
       } catch (error) {
         alert(error);
       }
     },
     [history]
   );
-
-  const { user } = useSelector((state) => state);
-
-  if (user) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className="w-full flex flex-wrap">

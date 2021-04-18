@@ -1,6 +1,7 @@
 import React from "react";
 
-export function FriendCard() {
+export function FriendCard(props) {
+    console.log(props)
     return (
         <div className="text-center p-6">
             <img
