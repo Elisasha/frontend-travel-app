@@ -3,11 +3,19 @@ import { Calendar } from "../components/Calendar";
 import '../components/Calendar.css';
 import { Container } from "../components/Container";
 import firebase from '../base';
+import { useSelector } from "react-redux";
+import { database } from '../base'
+import { useHistory } from "react-router-dom";
+
 
 export function AddTrip() {
+    const uid = useSelector(state => state.user.uid)
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const [cities, setCities] = useState([{ value: null }]);
     const [country, setCountry] = useState();
-    const [tripID, setTripID] = useState();
+    const history = useHistory();
+    // const [tripID, setTripID] = useState();
 
     function handleChange(i, event) {
         const values = [...cities];
@@ -28,16 +36,18 @@ export function AddTrip() {
     }
 
     function handleSubmit() {
-        setTripID(Math.random().toString(36).substr(2, 9))
-        // database.ref() and firebase.database().ref ask Slava
-        firebase.database().ref('trips/' + tripID).set({
-            country: country,
-            startDate: document.getElementById('tata-start-date').value,
-            endDate: document.getElementById('tata-end-date').value,
-            cities: cities
+        const tripID = Math.random().toString(36).substr(2, 9);
+        database.ref('trips/' + tripID).set({
+            country,
+            startDate: startDate.toString(),
+            endDate: endDate.toString(),
+            cities,
+            rating: null
         });
+        database.ref('users/' + uid).collection("trips").add(tripID)
         //add redirect to trip page
         console.log('send to db: trip id[' + tripID + ']')
+        history.push("/trips" + tripID)
     }
 
     return (
@@ -48,7 +58,7 @@ export function AddTrip() {
                         <label for="tripName" className="text-lg">Trip name</label>
                         <input id="tripName" placeholder="Iceland" value={country} onChange={e => setCountry(e.target.value)} className="appearance-none border w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"></input>
                     </div>
-                    <Calendar />
+                    <Calendar startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
                     <label for="city" className="text-lg  pt-4">Cities</label>
                     {cities.map((city, idx) => {
                         return (
