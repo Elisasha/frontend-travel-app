@@ -3,31 +3,31 @@ import { Calendar } from "../components/Calendar";
 import '../components/Calendar.css';
 import { Container } from "../components/Container";
 import firebase from '../base';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { database } from '../base'
 import { useHistory } from "react-router-dom";
+import { addTrip } from "../store/trips/actions";
 
 
 export function AddTrip() {
-    const uid = useSelector(state => state.user.uid)
+    const uid = useSelector(state => state.curUser.uid)
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [cities, setCities] = useState([{ value: null }]);
+    const [cities, setCities] = useState([""]);
     const [country, setCountry] = useState();
     const history = useHistory();
     // const [tripID, setTripID] = useState();
-
-
+    const dispatch = useDispatch();
 
     function handleChange(i, event) {
         const values = [...cities];
-        values[i].value = event.target.value;
+        values[i] = event.target.value;
         setCities(values);
     }
 
     function handleAdd() {
         const values = [...cities];
-        values.push({ value: null });
+        values.push("");
         setCities(values);
     }
 
@@ -38,20 +38,20 @@ export function AddTrip() {
     }
 
     function handleSubmit() {
-        const tripID = Math.random().toString(36).substr(2, 9);
-        database.ref('trips/' + tripID).set({
+        const trip = {
             country,
             startDate: startDate.toString(),
             endDate: endDate.toString(),
-            cities,
-            // rating: null
-        });
+            cities
+        }
+        const tripID = Math.random().toString(36).substr(2, 9);
+        database.ref('trips/' + tripID).set(trip);
         database.ref("users/" + uid + "/trips").push(tripID)
         //add redirect to trip page
         console.log('send to db: trip id[' + tripID + ']')
         history.push("/trips/" + tripID)
-        database.ref("users/" + uid + "/trips").get().then((snap) => console.log(snap.val()))
-
+        // database.ref("users/" + uid + "/trips").get().then((snap) => console.log(snap.val()))
+        dispatch(addTrip(tripID, trip))
     }
 
     return (
@@ -66,9 +66,9 @@ export function AddTrip() {
                     <label for="city" className="text-lg  pt-4">Cities</label>
                     {cities.map((city, idx) => {
                         return (
-                            <div key={`${city}-${idx}`}>
+                            <div key={idx}>
                                 <div className="flex flex-wrap items-stretch w-full mb-4 relative xl:w-2/5">
-                                    <input type="city" value={city.value || ""} onChange={e => handleChange(idx, e)} placeholder="Reykjavik" className="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none border h-10 px-3 relative" ></input>
+                                    <input type="text" value={city} onChange={e => handleChange(idx, e)} placeholder="Reykjavik" className="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none border h-10 px-3 relative" ></input>
                                     <div className="flex -mr-px">
                                         {idx > 0
                                             ? <button type="button" onClick={() => handleRemove(idx)} className="w-8 appearance-none flex items-center leading-normal bg-grey-lighter rounded-l-none border border-l-0 px-3 whitespace-no-wrap text-grey-dark text-sm">-</button>

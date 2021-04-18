@@ -10,7 +10,6 @@ import Login from "./Pages/LoginPage";
 import PrivateRoute from './Pages/PrivateRoute';
 import { Triplist } from "./Pages/TripList";
 import { TripPage } from './Pages/TripPage';
-import { setCurrentUser } from './store/actions';
 import { extendCurrentUser, setCurrentUser } from './store/curUser/actions';
 import { store } from './store/index';
 import { database } from "./base";
