@@ -58,7 +58,7 @@ export function AddTrip() {
         <Container>
             <div className="p-10">
                 <form className="flex flex-col pt-3" onSubmit={(event) => event.preventDefault()}>
-                    <div className="flex flex-col pt-4 xl:w-2/5">
+                    <div className="flex flex-col pt-4">
                         <label for="tripName" className="text-lg">Trip name</label>
                         <input id="tripName" placeholder="Iceland" value={country} onChange={e => setCountry(e.target.value)} className="appearance-none border w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"></input>
                     </div>
@@ -67,7 +67,7 @@ export function AddTrip() {
                     {cities.map((city, idx) => {
                         return (
                             <div key={idx}>
-                                <div className="flex flex-wrap items-stretch w-full mb-4 relative xl:w-2/5">
+                                <div className="flex flex-wrap items-stretch w-full mb-4 relative">
                                     <input type="text" value={city} onChange={e => handleChange(idx, e)} placeholder="Reykjavik" className="appearance-none flex-shrink flex-grow flex-auto leading-normal focus:outline-none border h-10 px-3 relative" ></input>
                                     <div className="flex -mr-px">
                                         {idx > 0
@@ -79,7 +79,7 @@ export function AddTrip() {
                             </div>
                         );
                     })}
-                    <div className="flex flex-col pt-4 xl:w-2/5">
+                    <div className="flex flex-col pt-4">
                         <input type="submit" onClick={() => handleSubmit()} value="Add" className="bg-black text-white font-bold text-lg p-2 mt-8"></input>
                     </div>
                 </form>
