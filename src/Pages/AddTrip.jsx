@@ -80,7 +80,7 @@ export function AddTrip() {
                         );
                     })}
                     <div className="flex flex-col pt-4">
-                        <input type="submit" onClick={() => handleSubmit()} value="Add" className="bg-black text-white font-bold text-lg p-2 mt-8"></input>
+                        <input type="submit" onClick={() => handleSubmit()} value="Add" className="bg-black text-white font-bold text-lg p-2 mt-8 hover:bg-gray-700 cursor-pointer"></input>
                     </div>
                 </form>
             </div>

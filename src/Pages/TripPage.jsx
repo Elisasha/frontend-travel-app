@@ -36,7 +36,7 @@ export function TripPage() {
                         <textarea placeholder="Trip notes" id="tripNotes" rows="4" className=" rounded border-2 border-gray-400 w-full mt-4 p-2">
                         </textarea>
                     </div>
-                    <input type="submit" value="Remove trip" className="absolute bottom-0 w-full bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 mx-auto"></input>
+                    <input type="submit" value="Remove trip" className="absolute bottom-0 w-full bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 mx-auto cursor-pointer"></input>
                 </div>
 
                 <div className="lg:w-1/2 shadow-2xl  md:mx-auto flex-col bg-red-300">
