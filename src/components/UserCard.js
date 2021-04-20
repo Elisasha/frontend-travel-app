@@ -56,7 +56,7 @@ export function UserCard() {
                                 <p className="text-sm font-medium text-gray-800 leading-none">My friends
                                 </p>
                             </div>
-                            <span class="text-xs p-3 rounded-full h-5 w-5 flex items-center justify-center bg-red-400">{user.friendRequests.length === 0 ? '' : ' +' + user.friendRequests.length}</span>
+                            <span class="ml-2 text-xs p-3 rounded-full h-5 w-5 flex items-center justify-center bg-red-400">{user.friendRequests.length === 0 ? '' : ' +' + user.friendRequests.length}</span>
                         </div>
                     </a>
                 </div>
