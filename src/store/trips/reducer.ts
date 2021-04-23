@@ -6,6 +6,10 @@ export function tripReducer(state = initialState, action: any) {
                 ...state,
                 [action.payload.tripID]: action.payload.trip
             };
+        case 'setUserTrips':
+            return {
+                ...state, ...action.payload
+            };
         default:
             return state;
     }

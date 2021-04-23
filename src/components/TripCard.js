@@ -1,7 +1,7 @@
 import React from "react";
 import "./TripCard.css";
 
-export function TripCard() {
+export function TripCard({ country }) {
     return (
         <div className="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-div overflow-hidden relative">
             <div className="w-full">
@@ -12,7 +12,7 @@ export function TripCard() {
                     </div>
                 </div>
                 <div className="py-2 px-2 bg-white  rounded-b-md fd-cl group-hover:opacity-25">
-                    <span className="block text-2xl text-gray-800 font-bold tracking-wide">France</span>
+                    <span className="block text-2xl text-gray-800 font-bold tracking-wide">{country}</span>
                     <span className="block text-gray-600 text-sm">Vivamus ac ligula sit amet erat luctus laoreet ac quis ligula. Donec bibendum faucibus purus eget cursus. Proin enim ante, scelerisque vel sem sit amet, ultrices mollis risus. Praesent justo felis, ullamcorper a cursus sed, condimentum at dui.</span>
                     {/* <span className="block text-gray-600 text-sm">Vivamus.</span> */}
                 </div>
