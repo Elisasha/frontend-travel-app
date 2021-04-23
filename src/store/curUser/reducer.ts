@@ -1,16 +1,17 @@
 const initialState = {
-    user: null,
 };
 
 export function authReducer(state = initialState, action: any) {
     switch (action.type) {
         case 'setCurrentUser':
             return {
-                ...state, user: action.payload
+                ...state, ...action.payload
             };
         case 'logoutUser':
+            return initialState;
+        case 'extendCurrentUser':
             return {
-                ...state, user: null
+                ...action.payload, ...state
             }
         default:
             return state;

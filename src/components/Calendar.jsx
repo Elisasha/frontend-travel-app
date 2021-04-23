@@ -4,16 +4,14 @@ import { DateRangePicker } from "react-dates";
 import './Calendar.css';
 
 
-export function Calendar() {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+export function Calendar({ startDate, endDate, setStartDate, setEndDate }) {
     const [focusedInput, setFocusedInput] = useState(null);
     const handleDatesChange = ({ startDate, endDate }) => {
         setStartDate(startDate);
         setEndDate(endDate);
     };
     return (
-        <div className="App pt-4 xl:w-1/3">
+        <div className="App pt-4">
             <DateRangePicker
                 startDate={startDate}
                 startDateId="tata-start-date"
