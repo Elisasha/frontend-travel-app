@@ -11,7 +11,7 @@ export function Triplist() {
     React.useEffect(() => { dispatch(getUserTrips(curUser)) }, [])
     return (
         <Container>
-            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 px-4">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 mb-4 px-4">
                 {Object.values(trips).map((trip, index) => <TripCard {...trip} key={index}></TripCard>)}
             </div>
         </Container >
