@@ -20,3 +20,16 @@ function setUser(payload: any) {
         payload
     }
 }
+
+export function getUserFriendRequests(user: any) {
+    return (dispatch: any, getState: any) => {
+        const state = getState();
+        user.friendRequests.forEach(async (frID: any) => {
+            if (!state.users[frID]) {
+                const snap = await database.ref('users/' + frID).get()
+                const friendReq = snap.val();
+                dispatch(setUser({ [frID]: friendReq }))
+            }
+        });
+    }
+}
