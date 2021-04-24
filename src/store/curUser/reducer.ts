@@ -9,7 +9,7 @@ export function authReducer(state = initialState, action: any) {
         case 'extendCurrentUser':
             return {
                 //@ts-ignore
-                ...action.payload, ...state
+                ...state, ...action.payload
             }
         default:
             return state;

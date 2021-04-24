@@ -4,3 +4,10 @@ export function setSortType(payload: any) {
         payload
     }
 }
+
+export function setSortOrder(payload: any) {
+    return {
+        type: "setSortOrder",
+        payload
+    }
+}
