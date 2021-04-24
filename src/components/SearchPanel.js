@@ -1,6 +1,9 @@
 import React from "react";
+import { setSortType } from "../store/sort/actions";
+import { getSortedTrips } from "../store/sort/selector";
 
 export function SearchPanel() {
+    const dispatch = useDispatch();
     return (
         <div className="rounded-t bg-white flex items-center justify-between w-full p-1 shadow-sm border-gray-200 z-10 px-3">
             <div className="text-sm text-gray-500 leading-none inline-flex">
@@ -23,7 +26,7 @@ export function SearchPanel() {
                 <span className="text-sm m-2 hidden lg:block">Sort by:</span>
                 <div className="border-gray-300 border rounded-full p-1">
                     <select name="" id="" className="text-sm outline-none focus:outline-none bg-transparent">
-                        <option value="name" selected>name</option>
+                        <option value="name" selected onChange={() => dispatch(setSortType("sortByName"))}>name</option>
                         <option value="date">date</option>
                         <option value="rating">rating</option>
                     </select>
