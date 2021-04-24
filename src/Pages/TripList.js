@@ -6,7 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 export function Triplist() {
   const { curUser, users, trips } = useSelector((state) => {
-    const tripsArray = Object.values(state.trips);
+    const tripsArray = [];
+    for (let key in state.trips) {
+      const tempObj = state.trips[key];
+      tempObj.trID = key;
+      tripsArray.push(tempObj);
+    }
     if (state.sort.order === "ASC") {
       tripsArray.sort((a, b) =>
         a[state.sort.type] < b[state.sort.type]
@@ -33,11 +38,10 @@ export function Triplist() {
   React.useEffect(() => {
     dispatch(getUserTrips(curUser));
   }, []);
-  console.log(trips);
+
   return (
     <Container>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 mb-4 px-4">
-        {/* {Object.values(trips).map((trip, index) => <TripCard {...trip} key={index}></TripCard>)} */}
         {trips.length > 0 ? (
           trips
             .filter(Boolean)

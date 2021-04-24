@@ -1,8 +1,9 @@
 import moment from "moment";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./TripCard.css";
 
-export function TripCard({ country, startDate }) {
+export function TripCard({ country, startDate, trID }) {
   const month = moment(startDate).format("MMMM");
   const day = moment(startDate).format("D");
   return (
@@ -32,9 +33,11 @@ export function TripCard({ country, startDate }) {
       </div>
       <div className="absolute opacity-0 fd-sh group-hover:opacity-100">
         <div className="text-center">
-          <button className="text-center rounded-lg p-4 bg-white  text-gray-700 font-bold text-lg">
-            View
-          </button>
+          <Link to={"/trips/" + trID}>
+            <button className="text-center rounded-lg p-4 bg-white  text-gray-700 font-bold text-lg">
+              View
+            </button>
+          </Link>
         </div>
       </div>
     </div>
