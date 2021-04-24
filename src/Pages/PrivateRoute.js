@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "../Auth.js";
+
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
     const user = useSelector((state) => state.curUser);
