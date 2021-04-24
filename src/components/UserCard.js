@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import app from "../base.js";
-import { logoutUser } from "../store/curUser/actions";
 import { Link } from "react-router-dom";
 
 export function UserCard() {
@@ -45,7 +44,7 @@ export function UserCard() {
               </div>
             </div>
           </a>
-          <a href="/:user/trips" className="px-4 py-2 hover:bg-gray-100 flex">
+          <Link className="px-4 py-2 hover:bg-gray-100 flex" to="/trips">
             <div className="flex items-center">
               <div className="text-gray-800">
                 <img
@@ -59,8 +58,8 @@ export function UserCard() {
                 </p>
               </div>
             </div>
-          </a>
-          <a href="/:user/friends" className="px-4 py-2 hover:bg-gray-100 flex">
+          </Link>
+          <Link to={"/friends"} className="px-4 py-2 hover:bg-gray-100 flex">
             <div className="flex items-center">
               <div className="text-green-600">
                 <img
@@ -79,7 +78,7 @@ export function UserCard() {
                   : " +" + user.friendRequests.length}
               </span>
             </div>
-          </a>
+          </Link>
         </div>
         <Link to="/logout" className="px-4 py-2 hover:bg-gray-100 flex">
           <div className="flex items-center">

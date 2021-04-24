@@ -47,7 +47,7 @@ function App() {
             exact
             render={() =>
               app.auth().currentUser ? (
-                <Redirect to="/"></Redirect>
+                <Redirect to={"/trips"}></Redirect>
               ) : (
                 <Login></Login>
               )
@@ -55,7 +55,7 @@ function App() {
           />
           <PrivateRoute path="/addtrip" component={AddTrip} />
           <Route path="/signup" exact component={SignUp} />
-          <PrivateRoute exact path="/" component={Triplist} />
+          <PrivateRoute exact path="/trips" component={Triplist} />
           <Route
             path="/logout"
             exact

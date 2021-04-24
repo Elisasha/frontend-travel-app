@@ -44,7 +44,7 @@ export function TripPage() {
     });
     await database.ref("trips/" + tripID).remove();
     dispatch(removeTrip(tripID));
-    history.push("/");
+    history.push("/trips");
   }
   console.log(trip.startDate, typeof trip.startDate);
 
