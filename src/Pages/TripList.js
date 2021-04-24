@@ -5,7 +5,7 @@ import { getUserTrips } from "../store/trips/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export function Triplist() {
-  const { curUser, users, trips } = useSelector((state) => {
+  const { curUser, users, trips, filter } = useSelector((state) => {
     const tripsArray = [];
     for (let key in state.trips) {
       const tempObj = state.trips[key];
@@ -29,9 +29,17 @@ export function Triplist() {
           : 0
       );
     }
+
+    // filteredArr = [];
+    // for (key in tripsArray) {
+    //   if (key !== "trID" && tripsArray[key].includes(state.sort.filter)) {
+    //   }
+    // }
+    // tripsArray.map((key, tr) => tr.filter);
     return {
       curUser: state.curUser,
       trips: tripsArray,
+      filter: state.filter,
     };
   });
   const dispatch = useDispatch();
@@ -44,7 +52,11 @@ export function Triplist() {
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 mb-4 px-4">
         {trips.length > 0 ? (
           trips
-            .filter(Boolean)
+            .filter((tr) =>
+              Object.values(tr)
+                .filter((trArr) => trArr)
+                .includes(filter)
+            )
             .map((trip, index) => (
               <TripCard
                 {...trip}

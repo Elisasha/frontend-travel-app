@@ -11,3 +11,10 @@ export function setSortOrder(payload: any) {
         payload
     }
 }
+
+export function setFilter(payload: any) {
+    return {
+        type: "setFilter",
+        payload
+    }
+}
