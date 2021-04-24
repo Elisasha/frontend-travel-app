@@ -10,7 +10,7 @@ import Login from "./Pages/LoginPage";
 import PrivateRoute from './Pages/PrivateRoute';
 import { Triplist } from "./Pages/TripList";
 import { TripPage } from './Pages/TripPage';
-import { extendCurrentUser, setCurrentUser } from './store/curUser/actions';
+import { extendCurrentUser, logoutUser, setCurrentUser } from './store/curUser/actions';
 import { store } from './store/index';
 import { database } from "./base";
 import { useHistory } from 'react-router-dom'
@@ -22,15 +22,13 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     app.auth().onAuthStateChanged(async (user) => {
-      console.log(user)
-      if (user && Object.keys(user).length) {
-        dispatch(setCurrentUser(user));
+      console.log("app component", user)
+      setPending(true)
+      dispatch(setCurrentUser(user));
+      if (user) {
         const snap = await database.ref('users/' + user.uid).get()
         const extUser = snap.val();
-        dispatch(extendCurrentUser(extUser)); console.log("this is ext user", extUser);
-        // dispatch(extendCurrentUser(extUser));
-        // history.push();
-        // window.location.href = "/" + user.uid + "/mytrips/"
+        dispatch(extendCurrentUser(extUser));
         console.log("something")
       }
       setPending(false)
@@ -45,7 +43,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/login" exact component={Login} />
+          <Route path="/login" exact render={() => app.auth().currentUser ? <Redirect to="/"></Redirect> : <Login></Login>} />
           {/* <Route path="/places" component={withNavBar(PlaceName)} /> */}
           {/* <Route path="/friend/:friendID" component={withNavBar(FriendPage)} /> */}
           {/* <Route path="/:user/friends" component={withNavBar(FriendsList)} /> */}

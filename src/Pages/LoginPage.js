@@ -1,7 +1,6 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
-import { AuthContext } from "../Auth.js";
 import { signInWithGoogle } from '../base.js';
 import { useSelector } from "react-redux";
 

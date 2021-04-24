@@ -12,7 +12,7 @@ export function Calendar({ startDate, endDate, setStartDate, setEndDate }) {
     };
     return (
         <div className="App pt-4">
-            <DateRangePicker
+            <DateRangePicker 
                 startDate={startDate}
                 startDateId="tata-start-date"
                 endDate={endDate}
