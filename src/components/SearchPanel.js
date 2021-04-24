@@ -1,3 +1,4 @@
+import { deprecationHandler } from "moment";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSortOrder, setSortType } from "../store/sort/actions";
@@ -71,10 +72,10 @@ export function SearchPanel() {
         </button>
         <input
           type="search"
-          name=""
           placeholder="search for trips"
           x-model="q"
           className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
+          onInput={(e) => dispatch(setFilter(e.target.value))}
         ></input>
       </div>
       <div className="select flex items-center">
@@ -82,7 +83,7 @@ export function SearchPanel() {
         <div className="border-gray-300 border rounded-full p-1">
           <select
             onChange={(e) => dispatch(setSortType(e.target.value))}
-            className="text-sm outline-none focus:outline-none bg-transparent"
+            className="text-sm outline-none focus:outline-none bg-transparent cursor-pointer"
           >
             <option value="country">name</option>
             <option value="startDate" selected>
@@ -117,7 +118,6 @@ export function SearchPanel() {
               viewBox="0 0 512 512"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* <path d="m31.414 15.586-7-7c-.78-.781-2.048-.781-2.828 0l-7 7c-.781.781-.781 2.047 0 2.828.78.781 2.048.781 2.828 0l3.586-3.586v39.172c0 1.104.896 2 2 2s2-.896 2-2v-39.172l3.586 3.586c.39.391.902.586 1.414.586s1.024-.195 1.414-.586c.781-.781.781-2.047 0-2.828z" /> */}
               <path
                 d="M374.176,110.386l-104-104.504c-0.006-0.006-0.013-0.011-0.019-0.018c-7.818-7.832-20.522-7.807-28.314,0.002
 			c-0.006,0.006-0.013,0.011-0.019,0.018l-104,104.504c-7.791,7.829-7.762,20.493,0.068,28.285

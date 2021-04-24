@@ -27,3 +27,10 @@ export function setUserTrips(payload: any) {
         payload
     }
 }
+
+export function removeTrip(tripID: string) {
+    return {
+        type: "removeTrip",
+        payload: tripID
+    }
+}

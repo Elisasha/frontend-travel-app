@@ -40,8 +40,8 @@ export function AddTrip() {
     function handleSubmit() {
         const trip = {
             country,
-            startDate: startDate.toString(),
-            endDate: endDate.toString(),
+            startDate: startDate.format('MM/DD/yyyy'),
+            endDate: endDate.format('MM/DD/yyyy'),
             cities
         }
         const tripID = Math.random().toString(36).substr(2, 9);
@@ -49,16 +49,16 @@ export function AddTrip() {
         database.ref("users/" + uid + "/trips").push(tripID)
         //add redirect to trip page
         console.log('send to db: trip id[' + tripID + ']')
-        history.push("/trips/" + tripID)
         // database.ref("users/" + uid + "/trips").get().then((snap) => console.log(snap.val()))
         dispatch(addTrip(tripID, trip))
+        history.push("/trips/" + tripID)
     }
 
     return (
         <Container>
-            <div className="p-10">
-                <form className="flex flex-col pt-3" onSubmit={(event) => event.preventDefault()}>
-                    <div className="flex flex-col pt-4">
+            <div className="lg:p-10 p-4">
+                <form className="flex flex-col " onSubmit={(event) => event.preventDefault()}>
+                    <div className="flex flex-col lg:pt-4">
                         <label for="tripName" className="text-lg">Trip name</label>
                         <input id="tripName" placeholder="Iceland" value={country} onChange={e => setCountry(e.target.value)} className="appearance-none border w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"></input>
                     </div>

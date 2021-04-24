@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from '../components/Container';
 import '../components/Calendar.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addTrip, removeTrip } from '../store/trips/actions';
+import { database } from '../base';
+import { useHistory } from 'react-router-dom'
+import { setCurrentUser } from '../store/curUser/actions';
+
 
 export function TripPage() {
     const { tripID } = useParams();
-    const trip = useSelector((state) => { console.log(state.trips); return state.trips[tripID] });
-    console.log(trip, tripID)
+    const {trip, curUserUid} = useSelector((state) => { return {trip: state.trips[tripID], curUserUid: state.curUser.uid}});
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    useEffect(() => {
+        if (!trip) {
+            database.ref('trips/' + tripID).get().then((snap) => dispatch(addTrip(tripID, snap.val())))
+        } 
+    },[])
+    
+  if (!trip) {
+    return <>Loading...</>
+  }
+  async function deleteTrip(){
+    await database.ref('trips/' + tripID).remove()
+    await database.ref('users/' + curUserUid + '/trips/' + tripID).remove()
+    dispatch(removeTrip(tripID));
+    history.push('/')
+  }
+
     return (
         <Container>
             <div className="w-full flex flex-wrap h-full">
@@ -36,7 +59,7 @@ export function TripPage() {
                         <textarea placeholder="Trip notes" id="tripNotes" rows="4" className=" rounded border-2 border-gray-400 w-full mt-4 p-2">
                         </textarea>
                     </div>
-                    <input type="submit" value="Remove trip" className="absolute bottom-0 w-full bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 mx-auto cursor-pointer"></input>
+                    <button onClick={deleteTrip} className="absolute bottom-0 w-full bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8 mx-auto cursor-pointer">Remove trip</button>
                 </div>
 
                 <div className="lg:w-1/2 shadow-2xl  md:mx-auto flex-col bg-red-300">
