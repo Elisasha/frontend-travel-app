@@ -10,6 +10,7 @@ export function addTrip(tripID: string, trip: any) {
 export function getUserTrips(user: any) {
     return (dispatch: any, getState: any) => {
         const state = getState();
+        if (user.trips) {
         Object.values(user.trips).forEach(async (trID: any) => {
             // user.trips.forEach(async (trID: any) => {
             if (!state.trips[trID]) {
@@ -18,6 +19,7 @@ export function getUserTrips(user: any) {
                 dispatch(setUserTrips({ [trID]: trip }))
             }
         });
+    }
     }
 }
 

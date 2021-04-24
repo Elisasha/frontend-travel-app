@@ -14,7 +14,7 @@ export function Triplist() {
           : a[state.sort.type] > b[state.sort.type]
           ? 1
           : 0
-      ); //x < y ? -1 : x > y ? 1 : 0;
+      );
     } else {
       tripsArray.sort((a, b) =>
         a[state.sort.type] > b[state.sort.type]
@@ -38,9 +38,18 @@ export function Triplist() {
     <Container>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 mb-4 px-4">
         {/* {Object.values(trips).map((trip, index) => <TripCard {...trip} key={index}></TripCard>)} */}
-        {trips.map((trip, index) => (
-          <TripCard {...trip} key={trip.startDate + trip.country}></TripCard>
-        ))}
+        {trips.length > 0 ? (
+          trips
+            .filter(Boolean)
+            .map((trip, index) => (
+              <TripCard
+                {...trip}
+                key={trip.startDate + trip.country}
+              ></TripCard>
+            ))
+        ) : (
+          <h3>You have not scheduled trips yet</h3>
+        )}
       </div>
     </Container>
   );

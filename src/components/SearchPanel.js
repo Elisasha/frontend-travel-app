@@ -75,7 +75,7 @@ export function SearchPanel() {
           placeholder="search for trips"
           x-model="q"
           className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
-          onInput={(e) => dispatch(setFilter(e.target.value))}
+          //   onInput={(e) => dispatch(setFilter(e.target.value))}
         ></input>
       </div>
       <div className="select flex items-center">
