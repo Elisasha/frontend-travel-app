@@ -5,7 +5,7 @@ import { getUserTrips } from "../store/trips/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export function Triplist() {
-  const { curUser, users, trips, filter } = useSelector((state) => {
+  const { curUser, trips, filter } = useSelector((state) => {
     const tripsArray = [];
     for (let key in state.trips) {
       const tempObj = state.trips[key];
@@ -29,17 +29,10 @@ export function Triplist() {
           : 0
       );
     }
-
-    // filteredArr = [];
-    // for (key in tripsArray) {
-    //   if (key !== "trID" && tripsArray[key].includes(state.sort.filter)) {
-    //   }
-    // }
-    // tripsArray.map((key, tr) => tr.filter);
     return {
       curUser: state.curUser,
       trips: tripsArray,
-      filter: state.filter,
+      filter: state.sort.filter.toLowerCase(),
     };
   });
   const dispatch = useDispatch();
@@ -47,16 +40,42 @@ export function Triplist() {
     dispatch(getUserTrips(curUser));
   }, []);
 
+  console.log(
+    trips.filter((tr) => {
+      const fltrCities = tr.cities.filter((c) =>
+        c.toLowerCase().includes(filter)
+      );
+      if (
+        tr.country.toLowerCase().includes(filter) ||
+        tr.endDate.includes(filter) ||
+        tr.startDate.includes(filter) ||
+        fltrCities.length > 0
+      ) {
+        return true;
+      }
+      return false;
+    })
+  );
+
   return (
     <Container>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 mb-4 px-4">
         {trips.length > 0 ? (
           trips
-            .filter((tr) =>
-              Object.values(tr)
-                .filter((trArr) => trArr)
-                .includes(filter)
-            )
+            .filter((tr) => {
+              const fltrCities = tr.cities.filter((city) =>
+                city.toLowerCase().includes(filter)
+              );
+              if (
+                tr.country.toLowerCase().includes(filter) ||
+                tr.endDate.includes(filter) ||
+                tr.startDate.includes(filter) ||
+                fltrCities.length > 0
+              ) {
+                return true;
+              }
+              return false;
+            })
             .map((trip, index) => (
               <TripCard
                 {...trip}
