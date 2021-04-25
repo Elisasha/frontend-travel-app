@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "../components/Container";
 import "../components/Calendar.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,11 +7,17 @@ import { addTrip, removeTrip } from "../store/trips/actions";
 import { database } from "../base";
 import { useHistory } from "react-router-dom";
 import { setCurrentUser } from "../store/curUser/actions";
+import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 export function TripPage() {
   const { tripID } = useParams();
   const { trip, curUserUid } = useSelector((state) => {
-    return { trip: state.trips[tripID], curUserUid: state.curUser.uid };
+    return {
+      trip: state.trips[tripID],
+      curUserUid: state.curUser.uid,
+    };
   });
   const dispatch = useDispatch();
   const history = useHistory();
@@ -46,7 +52,12 @@ export function TripPage() {
     dispatch(removeTrip(tripID));
     history.push("/trips");
   }
-  console.log(trip.startDate, typeof trip.startDate);
+
+  function updateRating(newValue) {
+    database.ref('trips/' + tripID).
+  }
+
+  console.log("country", trip.country);
 
   return (
     <Container>
@@ -55,16 +66,28 @@ export function TripPage() {
           <div className="m-10">
             <div className="flex flex-col md:justify-start">
               <p className="text-center text-3xl">{trip.country}</p>
-              <div className="flex justify-between pt-4 items-center">
+              <Box component="fieldset" borderColor="transparent">
+                {/* <Typography component="legend">Controlled</Typography> */}
+                <Rating
+                  className="m-2"
+                  name="simple-controlled"
+                  value={trip.rating}
+                  onChange={(event, newValue) => {
+                    updateRating(newValue);
+                  }}
+                />
+              </Box>
+              <div className="flex justify-between items-center">
                 <div>
                   <label className="text-lg m-3">
                     {trip.startDate} - {trip.endDate}
                   </label>
                 </div>
-                <div className="flex justify-center items-center p-2 m-4 w-16 h-16 text-center bg-gray-700 rounded-full text-white fd-cl group-hover:opacity-25">
-                  {/* <label className="text-lg">7/10</label> */}
-                  <div>{trip.rating}/10</div>
-                </div>
+                {/* <div className="flex justify-center items-center p-2 m-4 w-16 h-16 text-center bg-gray-700 rounded-full text-white fd-cl group-hover:opacity-25"> */}
+                {/* <label className="text-lg">7/10</label> */}
+                {/* <div>{trip.rating}/10</div> */}
+                {/* </div> */}
+                <div className="flex justify-center items-center"></div>
               </div>
 
               {trip.cities.map((city) => (
