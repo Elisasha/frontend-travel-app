@@ -3,7 +3,12 @@ import { Container } from "../components/Container";
 import "../components/Calendar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addTrip, removeTrip } from "../store/trips/actions";
+import {
+  addTrip,
+  getUserTrips,
+  removeTrip,
+  setRating,
+} from "../store/trips/actions";
 import { database } from "../base";
 import { useHistory } from "react-router-dom";
 import { setCurrentUser } from "../store/curUser/actions";
@@ -54,7 +59,7 @@ export function TripPage() {
   }
 
   function updateRating(newValue) {
-    database.ref('trips/' + tripID).
+    database.ref("trips/" + tripID + "/rating").set(newValue);
   }
 
   console.log("country", trip.country);
