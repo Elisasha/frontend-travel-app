@@ -30,7 +30,6 @@ export function FriendsList() {
         });
       }
 
-      // function sortArr(array) {
       if (frReqArr.length > 0) {
         if (state.sort.order === "ASC") {
           frReqArr.sort((a, b) =>
@@ -76,14 +75,10 @@ export function FriendsList() {
         users: state.users,
         friendRequests: frReqArr,
         friends: frArr,
-        filter: state.sort.filter.toLowerCase,
+        filter: state.sort.filter.toLowerCase(),
       };
     }
   );
-
-  // friends.forEach((fr) => console.log(fr."displayName".includes(filter)));
-  console.log(friends);
-  console.log(friendRequests);
 
   return (
     <Container>
@@ -95,12 +90,12 @@ export function FriendsList() {
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mt-6 px-4">
         {friendRequests.length > 0
           ? friendRequests
-              // .filter((frReq) => {
-              //   if (frReq."displayName".toLowerCase().includes(filter)) {
-              //     return true;
-              //   }
-              //   return false;
-              // })
+              .filter((frReq) => {
+                if (frReq.displayName.toLowerCase().includes(filter)) {
+                  return true;
+                }
+                return false;
+              })
               // .map((frID) => users[frID])
               .map((friend, index) => (
                 <FriendCard {...friend} key={index}></FriendCard>
@@ -115,13 +110,12 @@ export function FriendsList() {
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mt-6 px-4">
         {friends.length > 0
           ? friends
-              // .map((frID) => users[frID])
-              // .filter((fr) => {
-              //   if (fr."displayName".toLowerCase().includes(filter)) {
-              //     return true;
-              //   }
-              //   return false;
-              // })
+              .filter((fr) => {
+                if (fr.displayName.toLowerCase().includes(filter)) {
+                  return true;
+                }
+                return false;
+              })
               .map((friend, index) => (
                 <FriendCard {...friend} key={index}></FriendCard>
               ))
