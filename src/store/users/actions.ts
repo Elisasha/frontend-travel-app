@@ -15,7 +15,7 @@ export function getUserFriends(user: any) {
   };
 }
 
-function setUser(payload: any) {
+export function setUser(payload: any) {
   return {
     type: "setUser",
     payload,

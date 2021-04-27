@@ -2,20 +2,21 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import { signInWithGoogle } from "../base.js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPending } from "../store/pending/actions.ts";
 
 const Login = ({ history }) => {
+  const dispatch = useDispatch();
   const handleLogin = useCallback(
     async (event) => {
+      dispatch(setPending(true));
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
         const creds = await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/trips");
-        // console.log("redirect")
-        // console.log("creds:", creds)
+        history.push("/" + app.auth().currentUser.uid + "/trips");
       } catch (error) {
         alert(error);
       }
@@ -67,7 +68,7 @@ const Login = ({ history }) => {
           </form>
           <button
             className="login-provider-button mt-8 border border-gray-900 "
-            onClick={signInWithGoogle}
+            onClick={(() => dispatch(setPending(true)), signInWithGoogle())}
           >
             <div className="flex login-button py-1 items-center justify-center">
               <img

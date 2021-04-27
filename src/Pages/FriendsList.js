@@ -20,13 +20,13 @@ export function FriendsList() {
         state.curUser.friendRequests.length > 0
       ) {
         state.curUser.friendRequests.forEach((frR) => {
-          frReqArr.push(state.users[frR]);
+          frReqArr.push({ ...state.users[frR], uid: frR });
         });
       }
 
       if (state.curUser.friends && state.curUser.friends.length > 0) {
         state.curUser.friends.forEach((fr) => {
-          frArr.push(state.users[fr]);
+          frArr.push({ ...state.users[fr], uid: fr });
         });
       }
 
@@ -81,7 +81,7 @@ export function FriendsList() {
   );
 
   return (
-    <Container>
+    <>
       {friendRequests.length > 0 && (
         <h3 className="pt-2 text-center text-lg font-semibold">
           Friend request{friendRequests.length > 1 ? `s` : ``}
@@ -91,7 +91,7 @@ export function FriendsList() {
         {friendRequests.length > 0
           ? friendRequests
               .filter((frReq) => {
-                if (frReq.displayName.toLowerCase().includes(filter)) {
+                if (frReq?.displayName.toLowerCase().includes(filter)) {
                   return true;
                 }
                 return false;
@@ -111,7 +111,7 @@ export function FriendsList() {
         {friends.length > 0
           ? friends
               .filter((fr) => {
-                if (fr.displayName.toLowerCase().includes(filter)) {
+                if (fr?.displayName.toLowerCase().includes(filter)) {
                   return true;
                 }
                 return false;
@@ -121,6 +121,6 @@ export function FriendsList() {
               ))
           : ""}
       </div>
-    </Container>
+    </>
   );
 }

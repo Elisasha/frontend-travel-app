@@ -41,34 +41,29 @@ export function Triplist() {
   }, []);
 
   return (
-    <Container>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 mb-4 px-4">
-        {trips.length > 0 ? (
-          trips
-            .filter((tr) => {
-              const fltrCities = tr.cities.filter((city) =>
-                city.toLowerCase().includes(filter)
-              );
-              if (
-                tr.country.toLowerCase().includes(filter) ||
-                tr.endDate.includes(filter) ||
-                tr.startDate.includes(filter) ||
-                fltrCities.length > 0
-              ) {
-                return true;
-              }
-              return false;
-            })
-            .map((trip, index) => (
-              <TripCard
-                {...trip}
-                key={trip.startDate + trip.country}
-              ></TripCard>
-            ))
-        ) : (
-          <h3>You have not scheduled trips yet</h3>
-        )}
-      </div>
-    </Container>
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-1 mb-4 px-4">
+      {trips.length > 0 ? (
+        trips
+          .filter((tr) => {
+            const fltrCities = tr.cities.filter((city) =>
+              city.toLowerCase().includes(filter)
+            );
+            if (
+              tr.country.toLowerCase().includes(filter) ||
+              tr.endDate.includes(filter) ||
+              tr.startDate.includes(filter) ||
+              fltrCities.length > 0
+            ) {
+              return true;
+            }
+            return false;
+          })
+          .map((trip, index) => (
+            <TripCard {...trip} key={trip.startDate + trip.country}></TripCard>
+          ))
+      ) : (
+        <h3>You have not scheduled trips yet</h3>
+      )}
+    </div>
   );
 }
