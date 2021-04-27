@@ -72,7 +72,7 @@ export function UserCard() {
                 </p>
               </div>
               <span className="ml-2 text-xs p-3 rounded-full h-5 w-5 flex items-center justify-center bg-red-400">
-                {user.friendRequests.length === 0
+                {!user.friendRequests || user.friendRequests.length === 0
                   ? ""
                   : " +" + user.friendRequests.length}
               </span>
