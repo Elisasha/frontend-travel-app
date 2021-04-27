@@ -37,9 +37,9 @@ export function removeTrip(tripID: string) {
     }
 }
 
-export function setRating(tripID: string, rating: string) {
+export function setRating(tripID: string, rating: any) {
     return {
         type: "setRating",
-        payload: { tripID, rating }
+        payload: {tripID, rating}
     }
 }

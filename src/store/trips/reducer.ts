@@ -14,10 +14,8 @@ export function tripReducer(state = initialState, action: any) {
         const {[action.payload as string] : _, ...restTr} = state;
             return restTr;
         case 'setRating':
-            return {
-                ...state,
-                [action.payload.tripID.rating]: action.payload.rating
-            };
+            state[action.payload.tripID].rating = action.payload.rating
+            return state;
         default:
             return state;
     }
