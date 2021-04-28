@@ -5,7 +5,8 @@ import { SearchPanel } from "./SearchPanel";
 import { useRouteMatch } from "react-router-dom";
 
 export function Container({ children }) {
-  let match = useRouteMatch("/addtrip");
+  let match = useRouteMatch("/:uid/addtrip");
+  let trip = useRouteMatch("/:uid/trips/:tripID");
 
   return (
     <section className="section">
@@ -13,7 +14,7 @@ export function Container({ children }) {
         <main className="main">
           <UserCard />
           <div className="bg-white rounded flex-grow">
-            {!match && <SearchPanel></SearchPanel>}
+            {!match && !trip ? <SearchPanel></SearchPanel> : ""}
             <div className="content-area bg-white rounded overflow-hidden shadow-lg">
               {children}
             </div>

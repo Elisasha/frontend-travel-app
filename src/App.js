@@ -19,14 +19,16 @@ import { extendCurrentUser, setCurrentUser } from "./store/curUser/actions";
 import { database } from "./base";
 import { UserCard } from "./components/UserCard";
 import { SearchPanel } from "./components/SearchPanel";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useParams } from "react-router-dom";
 import { setPending } from "./store/pending/actions";
 import { setUser } from "./store/users/actions";
+import { Container } from "./components/Container";
 
 function App() {
   const pending = useSelector((state) => state.pending);
   const curUser = useSelector((state) => state.curUser);
   const users = useSelector((state) => state.users);
+  const { uid } = useParams();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -37,58 +39,82 @@ function App() {
         const snap = await database.ref("users/" + user.uid).get();
         const extUser = snap.val();
         dispatch(setUser({ [user.uid]: extUser }));
+        if (user.uid !== uid) {
+          const snap = await database.ref("users/" + uid).get();
+          const extUser = snap.val();
+          dispatch(setUser({ [uid]: extUser }));
+        }
         dispatch(setPending(false));
       }
     });
   }, []);
-  let match = useRouteMatch("/addtrip");
 
   if (pending) {
     return <>Loading...</>;
   }
 
-  console.log(pending, curUser, users);
-
   return (
-    <section className="section">
-      <div className="md:container md:mx-auto">
-        <main className="main">
-          <UserCard />
-          <div className="bg-white rounded flex-grow">
-            {!match && <SearchPanel></SearchPanel>}
-            <div className="content-area bg-white rounded overflow-hidden shadow-lg">
-              <div className="App">
-                <Switch>
-                  <Route
-                    path="/login"
-                    exact
-                    render={() =>
-                      app.auth().currentUser ? (
-                        <Redirect
-                          to={"/" + app.auth().currentUser.uid + "/trips"}
-                        ></Redirect>
-                      ) : (
-                        <Login></Login>
-                      )
-                    }
-                  />
-                  <PrivateRoute path="/:uid/addtrip" component={AddTrip} />
-                  <Route path="/signup" exact component={SignUp} />
-                  <PrivateRoute exact path="/:uid/trips" component={Triplist} />
-                  <Route
-                    path="/logout"
-                    exact
-                    render={() => <Redirect to="/login"></Redirect>}
-                  />
-                  <Route path="/:uid/friends" component={FriendsList} />
-                  <Route path="/:uid/trips/:tripID" component={TripPage} />
-                </Switch>
-              </div>
-            </div>
-          </div>
-        </main>
+    <Switch>
+      <div className="App">
+        <Route
+          path="/login"
+          exact
+          render={() =>
+            app.auth().currentUser ? (
+              <Redirect
+                to={"/" + app.auth().currentUser.uid + "/trips"}
+              ></Redirect>
+            ) : (
+              <Login></Login>
+            )
+          }
+        />
+        <PrivateRoute
+          path="/:uid/addtrip"
+          render={() => (
+            <Container>
+              <AddTrip />
+            </Container>
+          )}
+        />
+        <Route path="/signup" exact component={SignUp} />
+        <PrivateRoute
+          exact
+          path="/:uid/trips"
+          render={() => (
+            <Container>
+              <Triplist />
+            </Container>
+          )}
+        />
+        <Route
+          path="/logout"
+          exact
+          render={() => <Redirect to="/login"></Redirect>}
+        />
+        <Route
+          path="/:uid/friends"
+          render={() => (
+            <Container>
+              <FriendsList />
+            </Container>
+          )}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => <Redirect to={"/" + curUser.uid + "/trips"}></Redirect>}
+        />
+        <Route
+          path="/:uid/trips/:tripID"
+          render={() => (
+            <Container>
+              <TripPage />
+            </Container>
+          )}
+        />
       </div>
-    </section>
+    </Switch>
   );
 }
 

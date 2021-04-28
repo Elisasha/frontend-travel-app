@@ -1,6 +1,4 @@
 import React from "react";
-import { Container } from "../components/Container";
-import { TripCard } from "../components/TripCard";
 import { TripCardLong } from "../components/TripCardLong";
 import "../index.css";
 

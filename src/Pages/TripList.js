@@ -1,11 +1,12 @@
 import React from "react";
 import { TripCard } from "../components/TripCard";
-import { Container } from "../components/Container";
 import { getUserTrips } from "../store/trips/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 export function Triplist() {
-  const { curUser, trips, filter } = useSelector((state) => {
+  const { uid } = useParams();
+  const { curUser, trips, filter, user } = useSelector((state) => {
     const tripsArray = [];
     for (let key in state.trips) {
       const tempObj = state.trips[key];
@@ -33,11 +34,14 @@ export function Triplist() {
       curUser: state.curUser,
       trips: tripsArray,
       filter: state.sort.filter.toLowerCase(),
+      user: state.users[uid],
     };
   });
   const dispatch = useDispatch();
+
   React.useEffect(() => {
-    dispatch(getUserTrips(curUser));
+    console.log("triplist useeffect");
+    dispatch(getUserTrips(user));
   }, []);
 
   return (

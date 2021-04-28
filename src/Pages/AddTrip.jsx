@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Calendar } from "../components/Calendar";
 import "../components/Calendar.css";
-import { Container } from "../components/Container";
-import firebase from "../base";
 import { useDispatch, useSelector } from "react-redux";
 import { database } from "../base";
 import { useHistory } from "react-router-dom";

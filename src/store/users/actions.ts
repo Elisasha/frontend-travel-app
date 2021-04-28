@@ -3,8 +3,8 @@ import { database } from "../../base";
 export function getUserFriends(user: any) {
   return (dispatch: any, getState: any) => {
     const state = getState();
-    if (user.friends) {
-      user.friends.forEach(async (frID: any) => {
+    if (user?.friends) {
+      user?.friends.forEach(async (frID: any) => {
         if (!state.users[frID]) {
           const snap = await database.ref("users/" + frID).get();
           const friend = snap.val();
@@ -25,7 +25,7 @@ export function setUser(payload: any) {
 export function getUserFriendRequests(user: any) {
   return (dispatch: any, getState: any) => {
     const state = getState();
-    if (user.friendRequests) {
+    if (user?.friendRequests) {
       user.friendRequests.forEach(async (frID: any) => {
         if (!state.users[frID]) {
           const snap = await database.ref("users/" + frID).get();
