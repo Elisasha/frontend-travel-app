@@ -1,10 +1,12 @@
 import moment from "moment";
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import "./TripCard.css";
 
-export function TripCard({ country, startDate }) {
+export function TripCard({ country, startDate, trID }) {
   const month = moment(startDate).format("MMMM");
   const day = moment(startDate).format("D");
+  const { uid } = useParams();
   return (
     <div className="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-div overflow-hidden relative">
       <div className="w-full">
@@ -32,9 +34,11 @@ export function TripCard({ country, startDate }) {
       </div>
       <div className="absolute opacity-0 fd-sh group-hover:opacity-100">
         <div className="text-center">
-          <button className="text-center rounded-lg p-4 bg-white  text-gray-700 font-bold text-lg">
-            View
-          </button>
+          <Link to={"/" + uid + "/trips/" + trID}>
+            <button className="text-center rounded-lg p-4 bg-white  text-gray-700 font-bold text-lg">
+              View
+            </button>
+          </Link>
         </div>
       </div>
     </div>

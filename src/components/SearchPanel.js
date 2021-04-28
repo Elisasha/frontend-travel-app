@@ -1,11 +1,13 @@
 import { deprecationHandler } from "moment";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSortOrder, setSortType } from "../store/sort/actions";
+import { setFilter, setSortOrder, setSortType } from "../store/sort/actions";
 
 export function SearchPanel() {
   const dispatch = useDispatch();
-  const order = useSelector((state) => state.sort.order);
+  const { order, filter } = useSelector((state) => {
+    return { order: state.sort.order, filter: state.sort.filter };
+  });
   return (
     <div className="rounded-t bg-white flex items-center justify-between w-full p-1 shadow-sm border-gray-200 z-10 px-3">
       <div className="text-sm text-gray-500 leading-none inline-flex">
@@ -75,7 +77,7 @@ export function SearchPanel() {
           placeholder="search for trips"
           x-model="q"
           className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
-          //   onInput={(e) => dispatch(setFilter(e.target.value))}
+          onInput={(e) => dispatch(setFilter(e.target.value))}
         ></input>
       </div>
       <div className="select flex items-center">
