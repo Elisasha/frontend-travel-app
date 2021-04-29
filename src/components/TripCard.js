@@ -1,14 +1,36 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./TripCard.css";
+// import { unsplash } from "../unsplash";
+import nodeFetch from "node-fetch";
+import { createApi } from "unsplash-js";
 
 export function TripCard({ country, startDate, trID }) {
+  // const bgimageURL = "";
+  const [bgimageURL, setbgimageURL] = useState(
+    "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1866&q=80"
+  );
+  const unsplash = createApi({
+    accessKey: "P8F9weIEakms5lC3EPeU1UbZiQpV2yiL5lWzE3Be98o",
+    fetch: nodeFetch,
+  });
+
+  unsplash.photos.getRandom({ query: country }).then((result) => {
+    if (result.type === "success") {
+      setbgimageURL(result.response.urls.regular);
+    }
+  });
+
   const month = moment(startDate).format("MMMM");
   const day = moment(startDate).format("D");
   const { uid } = useParams();
+  // "https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80";""
   return (
-    <div className="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-div overflow-hidden relative">
+    <div
+      className="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-div overflow-hidden relative"
+      style={{ backgroundImage: `url(${bgimageURL})` }}
+    >
       <div className="w-full">
         <div className="image-cover rounded-t-md">
           <div className="p-2 m-4 w-16 h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25">
