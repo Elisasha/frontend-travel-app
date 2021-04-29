@@ -48,7 +48,7 @@ export function AddTrip() {
     console.log("send to db: trip id[" + tripID + "]");
     // database.ref("users/" + uid + "/trips").get().then((snap) => console.log(snap.val()))
     dispatch(addTrip(tripID, trip));
-    history.push("/trips/" + tripID);
+    history.push("/" + uid + "/trips/" + tripID);
   }
 
   return (

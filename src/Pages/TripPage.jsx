@@ -7,6 +7,8 @@ import { database } from "../base";
 import { useHistory } from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
+import nodeFetch from "node-fetch";
+import { createApi } from "unsplash-js";
 
 export function TripPage() {
   const { tripID } = useParams();
@@ -18,6 +20,22 @@ export function TripPage() {
   });
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [bgimageURL, setbgimageURL] = useState(
+    "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1866&q=80"
+  );
+  const unsplash = createApi({
+    accessKey: "P8F9weIEakms5lC3EPeU1UbZiQpV2yiL5lWzE3Be98o",
+    fetch: nodeFetch,
+  });
+
+  unsplash.photos
+    .getRandom({ query: trip.country.replace(/\s/g, "") })
+    .then((result) => {
+      if (result.type === "success") {
+        setbgimageURL(result.response.urls.regular);
+      }
+    });
 
   useEffect(() => {
     if (!trip) {
@@ -71,6 +89,7 @@ export function TripPage() {
                 }}
               />
             </Box>
+
             <div className="flex justify-between items-center">
               <div>
                 <label className="text-lg m-3">
@@ -92,12 +111,12 @@ export function TripPage() {
               </div>
             ))}
           </div>
-          <textarea
+          {/* <textarea
             placeholder="Trip notes"
             id="tripNotes"
             rows="4"
             className=" rounded border-2 border-gray-400 w-full mt-4 p-2"
-          ></textarea>
+          ></textarea> */}
         </div>
         <button
           onClick={deleteTrip}
@@ -107,8 +126,11 @@ export function TripPage() {
         </button>
       </div>
 
-      <div className="lg:w-1/2 shadow-2xl  md:mx-auto flex-col bg-red-300">
-        <p className="text-center text-xl">Map</p>
+      <div
+        className="lg:w-1/2 shadow-2xl  md:mx-auto flex-col bg-red-300"
+        style={{ backgroundImage: `url(${bgimageURL})` }}
+      >
+        {/* <p className="text-center text-xl">Map</p> */}
       </div>
     </div>
   );

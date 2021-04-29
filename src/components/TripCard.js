@@ -5,8 +5,10 @@ import "./TripCard.css";
 // import { unsplash } from "../unsplash";
 import nodeFetch from "node-fetch";
 import { createApi } from "unsplash-js";
+import Rating from "@material-ui/lab/Rating";
+import Box from "@material-ui/core/Box";
 
-export function TripCard({ country, startDate, trID }) {
+export function TripCard({ country, startDate, trID, rating, cities }) {
   // const bgimageURL = "";
   const [bgimageURL, setbgimageURL] = useState(
     "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1866&q=80"
@@ -16,11 +18,13 @@ export function TripCard({ country, startDate, trID }) {
     fetch: nodeFetch,
   });
 
-  unsplash.photos.getRandom({ query: country }).then((result) => {
-    if (result.type === "success") {
-      setbgimageURL(result.response.urls.regular);
-    }
-  });
+  unsplash.photos
+    .getRandom({ query: country.replace(/\s/g, "") })
+    .then((result) => {
+      if (result.type === "success") {
+        setbgimageURL(result.response.urls.regular);
+      }
+    });
 
   const month = moment(startDate).format("MMMM");
   const day = moment(startDate).format("D");
@@ -46,17 +50,27 @@ export function TripCard({ country, startDate, trID }) {
           <span className="block text-2xl text-gray-800 font-bold tracking-wide">
             {country}
           </span>
-          <span className="block text-gray-600 text-sm">
+          {/* <span className="block text-gray-600 text-sm">
             Vivamus ac ligula sit amet erat luctus laoreet ac quis ligula. Donec
             bibendum faucibus purus eget cursus. Proin enim ante, scelerisque
             vel sem sit amet, ultrices mollis risus. Praesent justo felis,
             ullamcorper a cursus sed, condimentum at dui.
-          </span>
+          </span> */}
+
+          <Box component="fieldset" borderColor="transparent">
+            <Rating
+              // className="m-2"
+              name="simple-controlled"
+              value={rating}
+              precision={0.5}
+              readOnly
+            />
+          </Box>
         </div>
       </div>
       <div className="absolute opacity-0 fd-sh group-hover:opacity-100">
         <div className="text-center">
-          <Link to={"/" + uid + "/trips/" + trID}>
+          <Link to={"/" + uid + "/trips/" + trID} bgimageURL={bgimageURL}>
             <button className="text-center rounded-lg p-4 bg-white  text-gray-700 font-bold text-lg">
               View
             </button>
