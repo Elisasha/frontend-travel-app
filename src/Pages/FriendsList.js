@@ -82,10 +82,12 @@ export function FriendsList() {
 
   return (
     <>
-      {friendRequests.length > 0 && (
+      {friendRequests.length > 0 && uid === curUser.uid ? (
         <h3 className="pt-2 text-center text-lg font-semibold">
           Friend request{friendRequests.length > 1 ? `s` : ``}
         </h3>
+      ) : (
+        ""
       )}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mt-6 px-4">
         {friendRequests
@@ -97,7 +99,8 @@ export function FriendsList() {
       </div>
       {friends.length > 0 && (
         <h3 className="pt-2 text-center text-lg font-semibold">
-          My friend{friends.length > 1 ? `s` : ``}
+          {uid === curUser.uid ? "My" : user?.displayName.split(" ")[0] + `'s`}{" "}
+          friend{friends.length > 1 ? `s` : ``}
         </h3>
       )}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mt-6 px-4">
