@@ -46,6 +46,7 @@ function App() {
         }
         dispatch(setPending(false));
       }
+      dispatch(setPending(false));
     });
   }, []);
 
