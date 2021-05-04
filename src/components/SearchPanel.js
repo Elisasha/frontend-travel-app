@@ -10,7 +10,7 @@ export function SearchPanel() {
   });
   return (
     <div className="rounded-t bg-white flex items-center justify-between w-full p-1 shadow-sm border-gray-200 z-10 px-3">
-      <div className="text-sm text-gray-500 leading-none inline-flex">
+      {/* <div className="text-sm text-gray-500 leading-none inline-flex">
         <button
           className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-1 py-2 active"
           id="grid"
@@ -57,7 +57,7 @@ export function SearchPanel() {
             <line x1="3" y1="18" x2="3.01" y2="18"></line>
           </svg>
         </button>
-      </div>
+      </div> */}
       <div className="w-72 flex items-center border-gray-300 border rounded-full p-1">
         <button className="outline-none focus:outline-none">
           <svg

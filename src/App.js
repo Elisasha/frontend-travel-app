@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
@@ -15,11 +15,10 @@ import Login from "./Pages/LoginPage";
 import PrivateRoute from "./Pages/PrivateRoute";
 import { Triplist } from "./Pages/TripList";
 import { TripPage } from "./Pages/TripPage";
-import { extendCurrentUser, setCurrentUser } from "./store/curUser/actions";
+import { setCurrentUser } from "./store/curUser/actions";
 import { database } from "./base";
-import { UserCard } from "./components/UserCard";
-import { SearchPanel } from "./components/SearchPanel";
-import { useRouteMatch, useParams } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
 import { setPending } from "./store/pending/actions";
 import { setUser } from "./store/users/actions";
 import { Container } from "./components/Container";
@@ -104,7 +103,9 @@ function App() {
         <Route
           exact
           path="/"
-          render={() => <Redirect to={"/" + curUser.uid + "/trips"}></Redirect>}
+          render={() => (
+            <Redirect to={"/" + curUser?.uid + "/trips"}></Redirect>
+          )}
         />
         <Route
           path="/:uid/trips/:tripID"
