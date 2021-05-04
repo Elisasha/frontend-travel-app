@@ -13,7 +13,6 @@ export function AddTrip() {
   const [cities, setCities] = useState([""]);
   const [country, setCountry] = useState();
   const history = useHistory();
-  // const [tripID, setTripID] = useState();
   const dispatch = useDispatch();
 
   function handleChange(i, event) {
@@ -46,7 +45,6 @@ export function AddTrip() {
     database.ref("users/" + uid + "/trips").push(tripID);
     //add redirect to trip page
     console.log("send to db: trip id[" + tripID + "]");
-    // database.ref("users/" + uid + "/trips").get().then((snap) => console.log(snap.val()))
     dispatch(addTrip(tripID, trip));
     history.push("/" + uid + "/trips/" + tripID);
   }

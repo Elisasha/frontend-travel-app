@@ -141,10 +141,7 @@ export function UserCard() {
       </div>
 
       {uid !== curUser?.uid && (
-        <Link
-          to={"/" + curUser.uid + "/trips"}
-          // className="px-4 py-2 hover:bg-gray-100 flex"
-        >
+        <Link to={"/" + curUser.uid + "/trips"}>
           <button className="bg-red-200 hover:bg-blue-dark text-gray-600 font-bold py-2 px-4 rounded mt-4 w-full shadow-lg">
             Return
           </button>

@@ -19,20 +19,14 @@ export function FriendPage() {
         />
         <div className="title mt-11 ml-3 font-bold flex flex-col">
           <div className="name break-words">Sarah</div>
-          {/* <!--  add [dark] className for bright background --> */}
           <div className="add font-semibold text-sm italic dark">Model</div>
         </div>
       </div>
-      <div className="buttons flex absolute bottom-0 font-bold right-0 text-xs text-gray-500 space-x-0 my-3.5 mr-3">
-        {/* <div className="add border rounded-l-2xl rounded-r-sm border-gray-300 p-1 px-4 cursor-pointer hover:bg-gray-700 hover:text-white">Contact</div> */}
-        {/* <!-- <div className="add border rounded-r-2xl rounded-l-sm border-gray-300 p-1 px-4 cursor-pointer hover:bg-gray-700 hover:text-white">Bio</div> --> */}
-      </div>
+      <div className="buttons flex absolute bottom-0 font-bold right-0 text-xs text-gray-500 space-x-0 my-3.5 mr-3"></div>
       <h1 className="text-gray-800 text-4xl font-semibold text-center m-2">
         Trips
       </h1>
-      {/* <div className="flex justify-center flex-col flex-1"> */}
       {Array.from({ length: 6 }).map(TripCardLong)}
-      {/* </div> */}
     </div>
   );
 }
